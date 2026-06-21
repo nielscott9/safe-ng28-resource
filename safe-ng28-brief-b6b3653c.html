@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ng28 · 产品功能说明</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+        .hero {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 80%, #334155 100%);
+            padding: 4.5rem 1.5rem 3.5rem;
+            text-align: center;
+            color: #e2e8f0;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            color: #f1f5f9;
+        }
+        .hero .sub {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 1.2rem;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #cbd5e1;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .intro-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+            margin-top: -1.5rem;
+            border: 1px solid #eef2f6;
+        }
+        .intro-card p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.4rem;
+            margin: 2.2rem 0 2rem;
+        }
+        .feature-item {
+            background: white;
+            border-radius: 14px;
+            padding: 1.5rem 1.2rem;
+            border: 1px solid #e9edf2;
+            transition: all 0.15s ease;
+        }
+        .feature-item:hover {
+            border-color: #b4c6da;
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.04);
+        }
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .feature-item h3::before {
+            content: "▸";
+            color: #6b7b8c;
+            font-weight: 300;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #475569;
+            margin: 0;
+        }
+        .scenario-block {
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+        }
+        .scenario-block h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #0f172a;
+        }
+        .scenario-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.5rem;
+        }
+        .scenario-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.98rem;
+            color: #1e293b;
+        }
+        .scenario-list li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #6b7b8c;
+        }
+        .faq-mini {
+            background: white;
+            border-radius: 14px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+        }
+        .faq-mini h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .faq-item {
+            margin-bottom: 0.8rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #1e293b;
+            margin-bottom: 0.1rem;
+        }
+        .faq-item p {
+            margin: 0 0 0.4rem 0;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+        .link-sentence {
+            background: white;
+            padding: 1.2rem 2rem;
+            border-radius: 16px;
+            border-left: 4px solid #6b7b8c;
+            margin: 2rem 0 1rem;
+            font-size: 1rem;
+        }
+        .link-sentence a {
+            color: #1e3a5f;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #b0c4db;
+            transition: border-color 0.15s;
+        }
+        .link-sentence a:hover {
+            border-bottom-color: #1e3a5f;
+        }
+        .disclaimer-note {
+            font-size: 0.85rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.9rem; }
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .intro-card { padding: 1.5rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .scenario-block, .faq-mini { padding: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>ng28 · 快速识别与产品说明</h1>
+    <div class="sub">功能型服务平台 · 面向实际使用场景</div>
+    <div class="tagline">简洁 · 直接 · 可验证</div>
+</section>
+
+<div class="container">
+
+    <div class="intro-card">
+        <p>当用户首次接触一个网站时，最关心的是“它能做什么、是否可靠、如何操作”。<strong>ng28</strong> 是一个以信息整合与工具化功能为主的线上站点，页面结构清晰，核心入口明确，适合有明确查找或操作需求的用户。</p>
+        <p>本文档从产品角度归纳其功能亮点、典型使用场景，并提供必要的访问提示，帮助访客在几分钟内判断该站点是否符合自身需求。</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-item">
+            <h3>功能聚焦</h3>
+            <p>页面围绕关键任务设计，减少无关干扰。导航与主要内容区域之间的逻辑关系直观。</p>
+        </div>
+        <div class="feature-item">
+            <h3>信息层次</h3>
+            <p>采用分区+卡片式布局，重要操作或说明置于显著位置，阅读路径清晰。</p>
+        </div>
+        <div class="feature-item">
+            <h3>响应适配</h3>
+            <p>在桌面与移动设备上均保持可用的布局结构，按钮及链接触控区域合理。</p>
+        </div>
+        <div class="feature-item">
+            <h3>低认知负担</h3>
+            <p>术语和指引偏向常规表达，新用户无需额外学习即可开始浏览。</p>
+        </div>
+    </div>
+
+    <div class="scenario-block">
+        <h2>适用场景举例</h2>
+        <ul class="scenario-list">
+            <li>需要快速查找并访问特定功能入口</li>
+            <li>对比或记录平台提供的工具类服务</li>
+            <li>在移动端进行简短的信息确认或操作</li>
+            <li>首次接触，希望大致了解站点定位与内容</li>
+        </ul>
+        <p style="margin-top:1rem; font-size:0.95rem; color:#475569;">以上场景均基于实际页面结构推测，用户可根据自身判断进一步使用。</p>
+    </div>
+
+    <div class="faq-mini">
+        <h2>常见疑问摘要</h2>
+        <div class="faq-item">
+            <strong>这个网站主要做什么？</strong>
+            <p>从页面布局来看，<strong>ng28</strong> 提供分类导航与功能入口，侧重信息整合与直接操作，不包含大量文章或资讯内容。</p>
+        </div>
+        <div class="faq-item">
+            <strong>是否需要注册？</strong>
+            <p>部分功能可能涉及用户交互，具体以页面实际提示为准。建议先浏览公开内容，再决定后续步骤。</p>
+        </div>
+        <div class="faq-item">
+            <strong>如何确认网站的真实用途？</strong>
+            <p>最可靠的方式是直接查看页面中的菜单、说明文字以及功能模块。本页仅做客观介绍，不替代用户自行判断。</p>
+        </div>
+    </div>
+
+    <div class="link-sentence">
+        如需直接访问，可参考该站点的原始地址：<a href="https://safe-ng28.com">ng28</a>（建议在浏览器中自行验证页面结构与功能）。
+    </div>
+
+    <div class="disclaimer-note">
+        本页为产品说明式介绍页，内容基于公开页面结构归纳，不构成推荐或保证。用户应自行判断网站是否适合自身需求。
+    </div>
+
+</div>
+
+</body>
+</html>
