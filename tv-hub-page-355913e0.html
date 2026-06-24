@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 电视互动新方式</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #1e1f22;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 顶部导航 */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      padding: 0.9rem 2rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e6e9ed;
+      margin-bottom: 2.8rem;
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.3px;
+      color: #1e2b3c;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-logo span {
+      background: #1e2b3c;
+      color: #f2f4f6;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #3f4753;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #0f141b;
+    }
+
+    /* 主体卡片风格 */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e2e6ec;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 28px rgba(31, 38, 48, 0.04), 0 3px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* hero 区域 */
+    .hero {
+      text-align: center;
+      padding: 3.2rem 2rem 2.8rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 540;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.8rem;
+      color: #12161c;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 1.6rem;
+      color: #4a535f;
+      font-size: 1.1rem;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #e9edf2;
+      padding: 0.4rem 1.4rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      color: #2f3b49;
+      border: 1px solid #d6dbe3;
+    }
+
+    /* 场景网格 */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 0.2rem;
+    }
+
+    .scene-item {
+      background: #f9fafc;
+      border-radius: 24px;
+      padding: 1.6rem 1.4rem 1.8rem;
+      border: 1px solid #e0e4ea;
+      transition: all 0.15s;
+    }
+
+    .scene-item h3 {
+      font-weight: 540;
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+      color: #12161c;
+      display: flex;
+      align-items: center;
+    }
+
+    .scene-item h3 i {
+      font-style: normal;
+      background: #dfe3e9;
+      margin-right: 0.6rem;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 0.9rem;
+      color: #1a2634;
+    }
+
+    .scene-item p {
+      color: #43505e;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* 常见说明折叠样式 */
+    .faq-list {
+      margin-top: 0.6rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e2e6ec;
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 520;
+      margin-bottom: 0.25rem;
+      color: #1b2635;
+    }
+
+    .faq-a {
+      color: #4b5766;
+      font-size: 0.95rem;
+      padding-left: 0.2rem;
+    }
+
+    .faq-a a {
+      color: #1a3a5a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b3bfcf;
+    }
+
+    .faq-a a:hover {
+      color: #0a1a2e;
+      text-decoration-color: #000;
+    }
+
+    /* 介绍段落 */
+    .intro-text {
+      font-size: 1rem;
+      color: #334151;
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    .intro-text a {
+      color: #1d2f47;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b3bfcf;
+      font-weight: 500;
+    }
+
+    .intro-text a:hover {
+      color: #0b1727;
+    }
+
+    /* 按钮/提示 */
+    .hint-box {
+      background: #f4f6f9;
+      padding: 1.4rem 1.8rem;
+      border-radius: 20px;
+      border: 1px solid #dce1e9;
+      margin: 1.8rem 0 0.2rem;
+    }
+
+    .hint-box p {
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+      color: #3d4b5c;
+    }
+
+    /* 响应式 */
+    @media (max-width: 820px) {
+      .scene-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        padding: 0.9rem 1.4rem;
+      }
+      .nav-links {
+        gap: 1.4rem;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .scene-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .card {
+        padding: 1.6rem 1.2rem;
+      }
+      .nav-links {
+        font-size: 0.9rem;
+        gap: 1rem;
+      }
+      body {
+        padding: 1rem 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 导航 -->
+  <nav class="nav">
+    <div class="nav-logo">
+      TV·Hub
+      <span>爱游戏</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#intro">方向</a></li>
+      <li><a href="#scenes">场景</a></li>
+      <li><a href="#faq">说明</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <div class="card hero">
+    <h1>电视大屏 · 轻量互动</h1>
+    <p>把游戏带进客厅，用遥控器或手柄探索另一种数字体验。<br>不需要复杂的配置，打开电视就能发现新内容。</p>
+    <div class="tagline">面向家庭与休闲场景</div>
+  </div>
+
+  <!-- 核心介绍 （嵌入链接）-->
+  <div class="card" id="intro">
+    <h2 style="font-weight:520; font-size:1.4rem; margin-bottom:0.6rem;">平台背后的思路</h2>
+    <div class="intro-text">
+      <p>当电视不再只是观看屏幕，它也可以成为互动入口。<strong>这个网站</strong>聚合了多项适合电视端使用的内容与工具，让用户通过遥控器就能直接参与。如果你正在寻找一个专门为电视优化的轻量互动平台，可以了解一下 <a href="https://tv-hub-igame.com">爱游戏</a> 所提供的内容组织方式。</p>
+      <p style="margin-top:0.8rem;">它不追求复杂的特效，而是更关注操作友好与画面清晰。内容经过筛选，更适合在客厅距离下游玩，避免了小字和密集界面带来的不便。</p>
+    </div>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="card" id="scenes">
+    <h2 style="font-weight:520; font-size:1.4rem; margin-bottom:1.2rem;">三个典型使用场景</h2>
+    <div class="scene-grid">
+      <div class="scene-item">
+        <h3><i>1</i> 家庭聚会</h3>
+        <p>多人同屏，轮流或合作参与。每局时间短，适合不同年龄的家人一起放松。</p>
+      </div>
+      <div class="scene-item">
+        <h3><i>2</i> 个人休闲</h3>
+        <p>下班后靠在沙发上，用遥控器简单操作，没有复杂的学习曲线，轻松切换。</p>
+      </div>
+      <div class="scene-item">
+        <h3><i>3</i> 临时消遣</h3>
+        <p>等待或碎片时间，打开电视随时进入。关闭后进度保留，下次继续。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 常见说明 (FAQ摘要) -->
+  <div class="card" id="faq">
+    <h2 style="font-weight:520; font-size:1.4rem; margin-bottom:0.4rem;">常见说明</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">需要额外下载或注册吗？</div>
+        <div class="faq-a">大部分内容无需注册即可体验。部分功能可能提示保存偏好，但<a href="https://tv-hub-igame.com">爱游戏</a>本身保持低门槛访问。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">支持哪些电视系统？</div>
+        <div class="faq-a">主要兼容 Android TV / 智能电视系统，以及部分支持浏览器访问的电视盒子。建议保持系统版本较新。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">手柄还是遥控器？</div>
+        <div class="faq-a">两者均可。界面针对遥控器方向键优化，同时支持蓝牙手柄，提供更多操作选择。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">内容是否持续更新？</div>
+        <div class="faq-a">是的。团队会根据用户使用反馈和电视硬件发展，定期调整内容库与交互方式。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 一点小提示 -->
+  <div class="hint-box">
+    <p>💡 建议使用大屏电视（43 英寸以上）以获得更舒适的观看距离。页面字体与元素会自适应屏幕尺寸。</p>
+    <p style="margin-top:0.3rem;">📡 遇到加载问题可检查电视网络或尝试刷新。多数内容不需要高速宽带。</p>
+  </div>
+
+  <!-- 轻微的 footer 代表结束 -->
+  <div style="text-align:center; font-size:0.85rem; color:#7a8798; padding:1.8rem 0 0.2rem; border-top:1px solid #dce1e9; margin-top:1.2rem;">
+    以实用为出发点 · 爱游戏体验
+  </div>
+
+</div>
+</body>
+</html>
